@@ -1,0 +1,65 @@
+---
+// Hero.astro - Static portfolio hero component
+---
+
+<section class="bg-black min-h-screen flex items-center py-20">
+  <div class="max-w-6xl mx-auto px-6 w-full">
+    <!-- Grid: 2 cols desktop, 1 col mobile -->
+    <div class="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-12 items-center">
+      
+      <!-- Left Column: Text & CTA -->
+      <div class="flex flex-col justify-center">
+        
+        <!-- Status Badge -->
+        <div class="inline-flex w-fit mb-6">
+          <span class="border border-gray-700 rounded-full px-3 py-1 text-sm text-gray-300">
+            🟢 Open for Internships & Networking
+          </span>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="text-5xl md:text-7xl font-extrabold text-white tracking-tight">
+          Naufal Alexander
+        </h1>
+
+        <!-- Role/Tagline -->
+        <p class="text-xl md:text-2xl font-medium text-gray-300 mt-4">
+          Informatics Engineering Student | Full-Stack Web Development Enthusiast
+        </p>
+
+        <!-- Bio -->
+        <p class="text-base md:text-lg text-gray-400 mt-6 max-w-2xl leading-relaxed">
+          Mahasiswa Teknik Informatika yang berfokus pada pengembangan web full-stack dengan aspirasi karir sebagai Software Engineer. Berkomitmen membangun sistem yang bersih serta mendokumentasikan setiap proses pembelajaran secara konsisten.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex gap-4 mt-8">
+          <a
+            href="#projects"
+            class="bg-[#22c55e] hover:bg-[#16a34a] text-black font-bold rounded-md px-6 py-3 transition-colors shadow-[0_0_15px_rgba(34,197,94,0.4)] hover:shadow-[0_0_20px_rgba(34,197,94,0.6)]"
+          >
+            Lihat Proyek
+          </a>
+          <a
+            href="#notes"
+            class="border border-gray-600 hover:border-gray-400 hover:bg-gray-800 text-white font-bold rounded-md px-6 py-3 transition-colors"
+          >
+            Jelajahi Catatan
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Column: Profile Image -->
+      <div class="flex justify-center md:justify-end">
+        <div class="w-64 h-64 md:w-96 md:h-96 rounded-full overflow-hidden shadow-2xl">
+          <img
+            src="https://placehold.co/400"
+            alt="Naufal Alexander"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -1,11 +1,30 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import '../styles/global.css';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Hero from '../components/Hero.astro';
+import GithubGrid from '../components/GithubGrid.jsx';
+import FeaturedProjects from '../components/FeaturedProjects.astro';
+import LearningVault from '../components/LearningVault.jsx';
+import { getLearningNotes } from '../lib/notion.js';
+
+const notes = await getLearningNotes();
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Naufal Alexander | Portfolio & Learning Vault</title>
+    <meta
+      name="description"
+      content="Portfolio and documentation site for full-stack web development, featuring project showcases and personal learning checkpoints."
+    />
+  </head>
+  <body class="bg-zinc-950 font-sans antialiased text-white min-h-screen">
+    <Hero />
+    <GithubGrid client:visible />
+    <FeaturedProjects />
+    <LearningVault notes={notes} client:load />
+  </body>
+</html>
