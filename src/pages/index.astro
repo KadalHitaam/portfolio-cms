@@ -1,6 +1,10 @@
 ---
 import '../styles/global.css';
-
+// Set Edge Cache pada Cloudflare
+Astro.response.headers.set(
+  'Cache-Control',
+  'public, max-age=0, s-maxage=600, stale-while-revalidate=3600'
+);
 import Hero from '../components/Hero.astro';
 import GithubGrid from '../components/GithubGrid.jsx';
 import FeaturedProjects from '../components/FeaturedProjects.astro';
