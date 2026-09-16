@@ -16,9 +16,26 @@ export default function LearningVault({ notes = [] }) {
     return notes.filter((n) => n.category === activeTab);
   }, [notes, activeTab]);
 
+  // Pagination (7 rows)
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 7;
+
+  // Reset halaman ke 1 setiap kali tab/kategori filter diubah
+  useMemo(() => {
+    setCurrentPage(1);
+  }, [activeTab]);
+
+  // Logic memotong array data berdasarkan halaman aktif
+  const paginatedNotes = useMemo(() => {
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredNotes.slice(start, start + ITEMS_PER_PAGE);
+  }, [filteredNotes, currentPage]);
+
+  const totalPages = Math.ceil(filteredNotes.length / ITEMS_PER_PAGE);
+
   return (
-    <section className="max-w-6xl mx-auto px-6 py-16">
-      {/* Header */}
+    <section id="notes" className="max-w-6xl mx-auto px-6 py-16">
+      {/* ... Filter Buttons ... */}
       <h2 className="text-3xl font-bold text-white mb-2">Learning Vault</h2>
       <p className="text-gray-400 mb-8">Dokumentasi proses belajar dan checkpoint personal.</p>
 
@@ -44,7 +61,7 @@ export default function LearningVault({ notes = [] }) {
         {filteredNotes.length === 0 ? (
           <p className="text-gray-500 text-sm py-4">No notes found in this category.</p>
         ) : (
-          filteredNotes.map((note) => (
+          paginatedNotes.map((note) => (
             <div
               key={note.id}
               onClick={() => setSelectedNote(note)}
@@ -68,6 +85,28 @@ export default function LearningVault({ notes = [] }) {
           ))
         )}
       </div>
+        
+        {totalPages > 1 && (
+        <div className="flex items-center justify-center gap-4 mt-8">
+          <button
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage(p => p - 1)}
+            className="px-4 py-2 text-sm font-medium border rounded-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100"
+          >
+            Previous
+          </button>
+          <span className="text-sm text-gray-600">
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage(p => p + 1)}
+            className="px-4 py-2 text-sm font-medium border rounded-md disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100"
+          >
+            Next
+          </button>
+        </div>
+      )}
 
       {/* Modal / Drawer Overlay */}
       {selectedNote && (
