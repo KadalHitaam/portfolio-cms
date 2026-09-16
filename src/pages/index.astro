@@ -23,7 +23,7 @@ const notes = await getLearningNotes();
   </head>
   <body class="bg-zinc-950 font-sans antialiased text-white min-h-screen">
     <Hero />
-    <GithubGrid client:visible />
+    <GithubGrid client:only="react" />
     <FeaturedProjects />
     <LearningVault notes={notes} client:load />
   </body>
