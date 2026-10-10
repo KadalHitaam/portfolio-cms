@@ -19,13 +19,14 @@ const notes = await getLearningNotes();
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Naufal Alexander | Portfolio & Learning Vault</title>
+    <title>Naufal Alexander</title>
     <meta
       name="description"
       content="Portfolio and documentation site for full-stack web development, featuring project showcases and personal learning checkpoints."
     />
   </head>
-  <body class="bg-zinc-950 font-sans antialiased text-white min-h-screen">
+  <body class="min-h-screen" style="background-color: var(--nb-bg); color: var(--nb-ink); font-family: var(--font-body);">
+
     <Hero />
     <GithubGrid client:only="react" />
     <FeaturedProjects />

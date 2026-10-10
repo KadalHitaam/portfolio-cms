@@ -1,5 +1,275 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
 html { scroll-behavior: smooth; }
+
+/* ===== NEOBRUTALISM DESIGN SYSTEM ===== */
+
+:root {
+  /* Core palette */
+  --nb-bg: #f5f0e8;
+  --nb-bg-alt: #ede8dd;
+  --nb-ink: #1a1a1a;
+  --nb-ink-soft: #3a3a3a;
+  --nb-ink-muted: #6b6b6b;
+
+  /* Vibrant accent colors */
+  --nb-yellow: #FFE15D;
+  --nb-pink: #FF6B9D;
+  --nb-blue: #5DADE2;
+  --nb-mint: #7DCEA0;
+  --nb-orange: #F0A500;
+  --nb-lavender: #C39BD3;
+  --nb-coral: #FF7F7F;
+
+  /* Borders & shadows */
+  --nb-border: 3px solid var(--nb-ink);
+  --nb-border-thin: 2px solid var(--nb-ink);
+  --nb-shadow: 5px 5px 0px var(--nb-ink);
+  --nb-shadow-sm: 3px 3px 0px var(--nb-ink);
+  --nb-shadow-lg: 8px 8px 0px var(--nb-ink);
+
+  /* Typography */
+  --font-heading: 'Space Grotesk', 'Arial Black', sans-serif;
+  --font-body: 'Space Grotesk', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Cascadia Code', monospace;
+}
+
+/* ===== BASE RESET ===== */
+*, *::before, *::after {
+  border-radius: 0 !important;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--nb-bg);
+  color: var(--nb-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--nb-ink);
+}
+
+code, pre, .font-mono {
+  font-family: var(--font-mono) !important;
+}
+
+/* ===== NEOBRUTALIST BUTTON ===== */
+.nb-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: var(--nb-border);
+  box-shadow: var(--nb-shadow);
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: transform 80ms ease, box-shadow 80ms ease;
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.nb-btn:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 4px 4px 0px var(--nb-ink);
+}
+
+.nb-btn:active {
+  transform: translate(5px, 5px);
+  box-shadow: none;
+}
+
+.nb-btn-primary {
+  background-color: var(--nb-yellow);
+  color: var(--nb-ink);
+}
+
+.nb-btn-secondary {
+  background-color: var(--nb-bg);
+  color: var(--nb-ink);
+}
+
+.nb-btn-pink {
+  background-color: var(--nb-pink);
+  color: var(--nb-ink);
+}
+
+.nb-btn-mint {
+  background-color: var(--nb-mint);
+  color: var(--nb-ink);
+}
+
+.nb-btn-blue {
+  background-color: var(--nb-blue);
+  color: var(--nb-ink);
+}
+
+/* ===== NEOBRUTALIST CARD ===== */
+.nb-card {
+  background-color: #ffffff;
+  border: var(--nb-border);
+  box-shadow: var(--nb-shadow);
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.nb-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0px var(--nb-ink);
+}
+
+/* ===== NEOBRUTALIST BADGE ===== */
+.nb-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border: var(--nb-border-thin);
+  background-color: var(--nb-yellow);
+  color: var(--nb-ink);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ===== NEOBRUTALIST INPUT ===== */
+.nb-input {
+  border: var(--nb-border);
+  padding: 0.75rem 1rem;
+  font-family: var(--font-body);
+  background: #ffffff;
+  box-shadow: var(--nb-shadow-sm);
+  outline: none;
+  transition: box-shadow 80ms ease, transform 80ms ease;
+}
+
+.nb-input:focus {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0px var(--nb-ink);
+  outline: 3px solid var(--nb-blue);
+  outline-offset: 0px;
+}
+
+/* ===== NEOBRUTALIST SECTION HEADER ===== */
+.nb-section-title {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--nb-ink);
+  line-height: 1.1;
+  position: relative;
+  display: inline-block;
+}
+
+.nb-section-title::after {
+  content: '';
+  display: block;
+  width: 60%;
+  height: 6px;
+  background: var(--nb-yellow);
+  margin-top: 0.35rem;
+}
+
+/* ===== NEOBRUTALIST DIVIDER ===== */
+.nb-divider {
+  border: none;
+  border-top: var(--nb-border);
+  margin: 2rem 0;
+}
+
+/* ===== SCROLLBAR STYLING ===== */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ===== MODAL OVERLAY ===== */
+.nb-overlay {
+  background-color: rgba(26, 26, 26, 0.75);
+  backdrop-filter: blur(4px);
+}
+
+/* ===== DISABLED STATE ===== */
+.nb-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: var(--nb-shadow) !important;
+}
+
+/* ===== SELECTION ===== */
+::selection {
+  background: var(--nb-yellow);
+  color: var(--nb-ink);
+}
+
+/* ===== KEYFRAME ANIMATIONS ===== */
+@keyframes nb-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes nb-pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.nb-animate-in {
+  animation: nb-slide-up 0.4s ease-out forwards;
+}
+
+.nb-modal-animate {
+  animation: nb-pop-in 0.25s ease-out forwards;
+}
+
+/* ===== GITHUB CALENDAR OVERRIDES ===== */
+.react-activity-calendar {
+  border: var(--nb-border) !important;
+  box-shadow: var(--nb-shadow) !important;
+  padding: 1.25rem !important;
+  background: #ffffff !important;
+}
+
+/* ===== PROSE OVERRIDES FOR MODAL CONTENT ===== */
+.nb-prose h1 { font-size: 1.5rem; font-weight: 700; color: var(--nb-ink); margin: 1.5rem 0 0.75rem; }
+.nb-prose h2 { font-size: 1.25rem; font-weight: 700; color: var(--nb-ink); margin: 1.25rem 0 0.5rem; }
+.nb-prose h3 { font-size: 1.1rem; font-weight: 600; color: var(--nb-ink); margin: 1rem 0 0.5rem; }
+.nb-prose p { color: var(--nb-ink-soft); line-height: 1.7; margin-bottom: 0.75rem; }
+.nb-prose li { color: var(--nb-ink-soft); margin: 0.25rem 0; list-style-position: outside; margin-left: 1.25rem; }
+.nb-prose pre {
+  background: var(--nb-ink) !important;
+  color: var(--nb-mint) !important;
+  border: var(--nb-border-thin) !important;
+  padding: 1rem !important;
+  overflow-x: auto;
+  font-family: var(--font-mono) !important;
+}
+.nb-prose blockquote {
+  border-left: 5px solid var(--nb-yellow);
+  padding-left: 1rem;
+  font-style: italic;
+  color: var(--nb-ink-muted);
+}

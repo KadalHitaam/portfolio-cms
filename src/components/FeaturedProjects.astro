@@ -10,7 +10,8 @@ const projects = [
     stack: ["PHP", "Laravel", "Blade", "Tailwind CSS", "MySQL", "Eloquent ORM"],
     actionLabel: "View Repository & Architecture",
     repoUrl: "https://github.com/KadalHitaam/microsite.git",
-    imagePlaceholder: "https://placehold.co/800x450/18181b/ffffff?text=Bio-Link+Dashboard"
+    imagePlaceholder: "https://placehold.co/800x450/18181b/ffffff?text=Bio-Link+Dashboard",
+    accent: "var(--nb-pink)"
   },
   {
     title: "Sistem Monitoring & Transaksi Fotokopi",
@@ -20,54 +21,72 @@ const projects = [
     stack: ["TypeScript", "Next.js", "Prisma ORM", "MySQL", "Tailwind CSS"],
     actionLabel: "View Repository & Database Schema",
     repoUrl: "https://github.com/KadalHitaam/monitor-fotocopy.git",
-    imagePlaceholder: "https://placehold.co/800x450/18181b/ffffff?text=Sistem+Fotokopi"
+    imagePlaceholder: "https://placehold.co/800x450/18181b/ffffff?text=Sistem+Fotokopi",
+    accent: "var(--nb-blue)"
   }
   
 ];
+
+// Alternating badge colors for tech stack
+const badgeColors = ['var(--nb-yellow)', 'var(--nb-mint)', 'var(--nb-pink)', 'var(--nb-blue)', 'var(--nb-lavender)', 'var(--nb-orange)'];
 ---
 
 <section id="projects" class="max-w-6xl mx-auto px-6 py-16">
   <!-- Section Header -->
-  <h2 class="text-3xl font-bold text-white mb-2">Featured Projects</h2>
-  <p class="text-gray-400 mb-10">Building clean systems and practical solutions.</p>
+  <h2 class="nb-section-title">Featured Projects</h2>
+  <p class="mt-3 mb-10" style="color: var(--nb-ink-muted); font-size: 1.05rem;">Building clean systems and practical solutions.</p>
 
   <!-- Projects Grid -->
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-    {projects.map((project) => (
-      <article class="bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden hover:border-zinc-700 transition-colors">
+    {projects.map((project, projectIdx) => (
+      <article class="nb-card overflow-hidden flex flex-col">
         <!-- Project Image -->
-        <img
-          src={project.image}
-          alt={project.title}
-          class="w-full h-60 object-cover"
-        />
-
+        <div style={`border-bottom: 3px solid var(--nb-ink);`}>
+          <img
+            src={project.image}
+            alt={project.title}
+            class="w-full h-60 object-cover"
+          />
+        </div>
 
         <!-- Content Area -->
-        <div class="p-6">
-          <h3 class="text-xl font-bold text-white mb-1">{project.title}</h3>
-          <p class="text-sm font-medium text-emerald-400 mb-4">{project.tagline}</p>
-          <p class="text-sm text-gray-400 mb-6 line-clamp-3">{project.description}</p>
+        <div class="p-6 flex flex-col flex-1">
+          <!-- Tagline bar -->
+          <div class="mb-3 -mt-1">
+            <span
+              class="inline-block text-xs font-bold uppercase tracking-wider px-3 py-1"
+              style={`background-color: ${project.accent}; border: 2px solid var(--nb-ink); font-family: var(--font-mono);`}
+            >
+              {project.tagline}
+            </span>
+          </div>
+
+          <h3 class="text-xl font-bold mb-3" style="color: var(--nb-ink); font-family: var(--font-heading);">{project.title}</h3>
+          <p class="text-sm mb-6 line-clamp-3" style="color: var(--nb-ink-muted);">{project.description}</p>
 
           <!-- Tech Stack Badges -->
           <div class="flex flex-wrap gap-2 mb-6">
-            {project.stack.map((tech) => (
-              <span class="text-xs px-2.5 py-0.5 rounded-full bg-zinc-800 text-gray-300 border border-zinc-700">
+            {project.stack.map((tech, i) => (
+              <span
+                class="text-xs px-2.5 py-1 font-bold"
+                style={`background-color: ${badgeColors[i % badgeColors.length]}; border: 2px solid var(--nb-ink); font-family: var(--font-mono);`}
+              >
                 {tech}
               </span>
             ))}
           </div>
 
           <!-- Action Button -->
-          <a
-            href={project.repoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium transition-colors border rounded-md hover:bg-gray-100 border-gray-300 ..."
+          <div class="mt-auto">
+            <a
+              href={project.repoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="nb-btn nb-btn-primary text-xs"
             >
-            View Repository
-          </a>
-          
+              ↗ View Repository
+            </a>
+          </div>
         </div>
       </article>
     ))}
